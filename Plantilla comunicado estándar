@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+        <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+        <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+        <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+        <style>
+
+            /* What it does: Remove spaces around the email design added by some email clients. */
+            /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+            html,
+            body {
+                margin: 0 auto !important;
+                padding: 0 !important;
+                height: 100% !important;
+                width: 100% !important;
+                font-family: 'Arial';
+            }
+            /* What it does: Stops email clients resizing small text. */
+            * {
+                -ms-text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+            }
+            /* What it does: Centers email on Android 4.4 */
+            div[style*="margin: 0px 0"] {
+                margin: 0 !important;
+            }
+            /* What it does: Stops Outlook from adding extra spacing to tables. */
+            table,
+            td {
+                mso-table-lspace: 0pt !important;
+                mso-table-rspace: 0pt !important;
+            }
+            /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+            table {
+                border-spacing: 0 !important;
+                border-collapse: collapse !important;
+                table-layout: fixed !important;
+                margin: 0 auto !important;
+            }
+            table table table {
+                table-layout: auto;
+            }
+            /* What it does: Uses a better rendering method when resizing images in IE. */
+            img {
+                -ms-interpolation-mode:bicubic;
+            }
+            /* What it does: A work-around for email clients meddling in triggered links. */
+            *[x-apple-data-detectors],  /* iOS */
+            .x-gmail-data-detectors,    /* Gmail */
+            .x-gmail-data-detectors *,
+            .aBn {
+                border-bottom: 0 !important;
+                cursor: default !important;
+                color: inherit !important;
+                text-decoration: none !important;
+                font-size: inherit !important;
+                font-family: inherit !important;
+                font-weight: inherit !important;
+                line-height: inherit !important;
+            }
+            .Texto{
+                padding: 25px 40px 0px 40px;
+                font-size: 14px; 
+            }
+            .Texto2{
+                padding: 10px 40px 0px 40px;
+                font-size: 14px; 
+            }
+            .Texto3{
+                padding: 0px 40px 0px 40px;
+                font-size: 14px; 
+            }
+            .textoContacto{
+                font-size: 14px;
+                padding: 25px 40px 25px 40px;
+            }
+            .textoContacto2{
+                font-size: 14px;
+                padding: 25px 40px 25px 40px;
+            }
+            .textoResponsivo{
+                padding: 0px 0px 0px 0px;
+            }
+            .textoResponsivo2{
+                padding: 0px 0px 0px 0px;
+            }
+            .Bullets{
+                font-size: 14px;
+            }
+            .Titulo{
+                padding: 25px 40px 25px 40px; 
+            }
+            .btnLeft{
+                text-align: left;
+            }
+            .imgMovil{
+                display: none;
+            }
+            .imgWeb{
+                display: block;
+            }
+            .btnResponsivo{
+                font-size: 16px;
+                min-width: 80px;
+                padding: 0px 15px 0px 15px; 
+            }
+            ol {
+                counter-reset: item;
+           }
+
+           ol > li {
+                display: block;
+           }
+           ol > li:before {
+                content: counter(item) ". "; 
+                counter-increment: item; 
+                font-weight: bold;
+            }
+
+            /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+            .a6S {
+               display: none !important;
+               opacity: 0.01 !important;
+           }
+           /* If the above doesn't work, add a .g-img class to any image in question. */
+           img.g-img + div {
+               display: none !important;
+           }
+
+           /* What it does: Prevents underlining the button text in Windows 10 */
+            .button-link {
+                text-decoration: none !important;
+            }
+
+            /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+            /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+            /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+            @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+                .email-container {
+                    min-width: 320px !important;
+                }
+            }
+            /* iPhone 6, 6S, 7, 8, and X */
+            @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+                .email-container {
+                    min-width: 375px !important;
+                }
+            }
+            /* iPhone 6+, 7+, and 8+ */
+            @media only screen and (min-device-width: 414px) {
+                .email-container {
+                    min-width: 414px !important;
+                }
+            }
+        </style>
+        <!-- CSS Reset : END -->
+
+        <!-- Progressive Enhancements : BEGIN -->
+        <style>
+            /* What it does: Hover styles for buttons */
+            .button-td,
+            .button-a {
+                transition: all 100ms ease-in;
+            }
+            .button-td:hover,
+            .button-a:hover {
+                background: #555555 !important;
+                border-color: #555555 !important;
+            }
+
+            /* Media Queries */
+            @media screen and (max-width: 600px) {
+
+                .email-container {
+                    width: 100% !important;
+                    margin: auto !important;
+                }
+
+                /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+                .fluid {
+                    max-width: 100% !important;
+                    height: auto !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                }
+
+                /* What it does: Forces table cells into full-width rows. */
+                .stack-column,
+                .stack-column-center {
+                    display: block !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    direction: ltr !important;
+                    max-height: none !important;
+                    overflow:visible !important;
+                }
+                .stack-column-mod {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    direction: ltr !important;
+                }
+                /* And center justify these ones. */
+                .stack-column-center {
+                    text-align: center !important;
+                    max-height: none !important;
+                    overflow:visible !important;
+                }
+                .stack-column-mod {
+                    text-align: center !important;
+                }
+
+                /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+                .center-on-narrow {
+                    text-align: center !important;
+                    display: block !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                    float: none !important;
+                    max-height: none !important;
+                    overflow:visible !important;
+                }
+                table.center-on-narrow {
+                    display: inline-block !important;
+                }
+
+                /* What it does: Adjust typography on small screens to improve readability */
+                .email-container p {
+                    font-size: 17px !important;
+                }
+                .Texto{
+                    padding: 25px 20px 0px 20px;
+                    font-size: 17px; 
+                }
+                .Texto2{
+                    padding: 25px 20px 0px 20px;
+                    font-size: 17px; 
+                }
+                .textoContacto{
+                font-size: 17px;
+                padding: 25px 20px 0px 20px;
+                }
+                .textoContacto2{
+                font-size: 17px;
+                padding: 25px 20px 25px 20px;
+                }
+                .textoResponsivo{
+                    padding: 25px 0px 25px 0px;
+                    font-size: 17px;
+                }
+                .textoResponsivo2{
+                    padding: 10px 0px 25px 0px;
+                    font-size: 17px;
+                }
+                .Bullets{
+                    font-size: 17px;
+                }
+                .Titulo{
+                    padding: 10px 20px 0px 20px; 
+                }
+                .Texto3{
+                    padding: 0px 20px 0px 20px;
+                }
+                .btnLeft{
+                    text-align: center;
+                }
+                .saltoBTN1{
+                    padding: 0px 0px 0px 0px;
+                    display: block !important;
+                }
+                .saltoBTN2{
+                    padding: 15px 0px 0px 0px;
+                    display: block !important;
+                }
+                .imgMovil{
+                    display: block;
+                }
+                .imgWeb{
+                    display: none;
+                }
+                .btnResponsivo{
+                    font-size: 22px;
+                    min-width: 80px;
+                    padding: 5px 15px 5px 15px; 
+                }
+            }
+
+        </style>
+        <!-- Progressive Enhancements : END -->
+
+        <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+        <!--[if gte mso 9]>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:AllowPNG/>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+        <![endif]-->
+
+    </head>
+    <body width="100%" style="margin: 0; mso-line-height-rule: exactly;">
+        <center style="width: 100%; background: #F4F4F4;" text-align: left;">
+        <!--[if mso | IE]>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#F4F4F4">
+        <tr>
+        <td>
+        <![endif]-->
+
+            <!-- Visually Hidden Preheader Text : BEGIN -->
+            <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: 'Arial';">
+                Comunicados Grupo Tress Internacional
+            </div>
+
+            <!-- Email Header : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+                <tr>
+                    <td bgcolor="#F4F4F4" style="padding: 25px 10px 25px 10px; text-align: center; font-size: 12px; color: #757575; font-family: 'Arial';">
+                        Si no puedes visualizar el contenido, da clic
+                        <a href="https://jappi.tress.com.mx/Publico/Compartido/Paginas/Nuevo%20portal%20para%20realizar%20solicitudes%20o%20reportes%20al%20%C3%A1rea%20de%20servicios%20de%20tecnolog%C3%ADa.html" target="_blank" style="color: #5c5ca2; font-family: 'Arial';">
+                             <b>aquí</b>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Header : END -->
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+                <!-- Hero Image, Flush : BEGIN -->
+                <tr>
+                    <td bgcolor="#33338B" align="center" style="padding: 25px 0px 15px 0px;">
+                        <a target="_blank" href="https://www.tress.com.mx/Default.aspx">
+                            <img src="https://clientes.tress.com.mx/Publico/Compartido/RecursosPlantillas/logoGTIBlanco.png" height="25" alt="Grupo Tress Internacional" border="0" align="center" style="width: auto; max-width: auto; height: 25px; font-family: 'Arial'; font-size: 20px; line-height: 140%; color: #FFFFFF; margin: auto; font-weight: bold;" class="g-img"/>
+                        </a>
+                    </td>
+                </tr>
+                <!-- Hero Image, Flush : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff" align="center" style="" >
+                        <img src="https://clientes.tress.com.mx/Publico/Compartido/RecursosPlantillas/147Banner.png" width="600" height="" alt="" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #ffffff; font-family: 'Arial'; font-size: 15px; line-height: 140%; color: #555555; margin: auto;" class="imgWeb">
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" align="center" style="mso-hide: all;" >
+                        <img src="https://clientes.tress.com.mx/Publico/Compartido/RecursosPlantillas/147BannerMovil.png" width="600" height="" alt="" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #ffffff; font-family: 'Arial'; font-size: 15px; line-height: 140%; color: #555555; margin: auto; " class="imgMovil">
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#FFFFFF" align="center" valign="top" border="0" style="background: #FFFFFF; font-family: 'Arial'; font-size: 22px; color: #FF5700; margin: auto; font-weight: bold;" class="Titulo">
+                        Nuevo portal para realizar solicitudes o reportes al área de Servicios de Tecnología
+
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td bgcolor="#ffffff" style="color: #757575; text-align: justify; font-family: 'Arial'; line-height: 18px; font-weight: normal;" class="Texto">
+                        En busca de brindarte un mejor servicio te compartimos que a partir del <b>29 de Julio del 2019</b>, pondremos a tu disposición un <b>portal web</b> desde el cual nos podrás solicitar ayuda con:
+
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="color: #757575; text-align: justify; font-family: 'Arial'; line-height: 18px; font-weight: normal;" class="Texto2">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <!-- Column : BEGIN -->
+                                <td align="justify" class="stack-column-center" style="padding: 0px 0px 0px 0px;" width="250">
+                                    
+                                    <ul style="Margin:0.3em; padding:0; line-height: 20px; letter-spacing: -0.5px; text-align: justify; color: #757575;" class="Bullets">
+                                        <li style="Margin:0 1em 0em; list-style:disc inside; mso-special-format:bullet; color: #757575;"><a style=" font-weight: bold;">Problemas de</a> internet, telefonía, computadoras y servidores.
+                                        <li style="Margin:0 1em 0em; list-style:disc inside; mso-special-format:bullet; color: #757575;"><a style=" font-weight: bold;">Solicitudes de servicio como</a> accesos e instalación de software.
+
+                                        <li style="Margin:0 1em 0em; list-style:disc inside; mso-special-format:bullet; color: #757575;"><a style=" font-weight: bold;">Asesoría a</a> dudas y/o consultas de temas relacionados con nuestra área.</li>
+                                    </ul>
+                                </td>
+                                <!-- Column : END -->
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="color: #757575; text-align: justify; font-family: 'Arial'; line-height: 18px; font-weight: bold;" class="Texto">
+                        Beneficios:
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="color: #757575; text-align: justify; font-family: 'Arial'; line-height: 18px; font-weight: normal;" class="Texto2">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <!-- Column : BEGIN -->
+                                <td align="justify" class="stack-column-center" style="padding: 0px 0px 0px 0px;" width="250">
+                                    
+                                    <ul style="Margin:0.3em; padding:0; line-height: 20px; letter-spacing: -0.5px; text-align: justify; color: #757575;" class="Bullets">
+                                        <li style="Margin:0 1em 0em; list-style:disc inside; mso-special-format:bullet; color: #757575;">Contar con un punto centralizado de ayuda y petición a cualquier requerimiento.</li>             <li style="Margin:0 1em 0em; list-style:disc inside; mso-special-format:bullet; color: #757575;">A través de un portal podrás mantenerte al tanto del estatus, avance e historial de tus solicitudes.</li>
+                                        <li style="Margin:0 1em 0em; list-style:disc inside; mso-special-format:bullet; color: #757575;">Evaluar la calidad de nuestros servicios.</li>              
+                                    </ul>
+                                </td>
+                                <!-- Column : END -->
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="color: #757575; text-align: justify; font-family: 'Arial'; line-height: 18px; font-weight: bold;" class="Texto">
+                        Consideraciones:
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="color: #757575; text-align: justify; font-family: 'Arial'; line-height: 18px; font-weight: normal;" class="Texto2">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <!-- Column : BEGIN -->
+                                <td align="justify" class="stack-column-center" style="padding: 0px 0px 0px 0px;" width="250">
+                                    
+                                    <ul style="Margin:0.3em; padding:0; line-height: 20px; letter-spacing: -0.5px; text-align: justify; color: #757575;" class="Bullets">
+                                        <li style="Margin:0 1em 0em; list-style:disc inside; mso-special-format:bullet; color: #757575;"><a style=" font-weight: bold;">A partir de la fecha indicada</a> se dará prioridad a las solicitudes recibidas mediante nuestro portal.
+                                            <li style="Margin:0 1em 0em; list-style:disc inside; mso-special-format:bullet; color: #757575;"><a style=" font-weight: bold;">Continuaremos utilizando medios de comunicación como teléfono de oficina, celular y Skype, sin embargo todas las solicitudes de servicio o reportes deberás registrarlas en nuestro portal.</a></li>
+                                    </ul>
+                                </td>
+                                <!-- Column : END -->
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="padding: 25px 40px 0px 40px;font-size: 14px; color: #999999; text-align: center; font-family: 'Arial'; font-weight: normal;">
+                        <!-- Button : BEGIN -->
+                        <div style="text-align: center;">
+                            <table>
+                                <tr>
+                                    <td bgcolor="#ffffff" style="font-size: 14px; color: #999999; text-align: center; font-family: 'Arial'; font-weight: normal;" class="saltoBTN1">
+                                        <!--[if mso]>
+                                            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://grupotress.atlassian.net/servicedesk/customer/portal/31" style="height:32px;v-text-anchor:middle;width:217px;" arcsize="10%" strokecolor="#79B228" strokeweight="2pt" fillcolor="#79B228">
+                                            <w:anchorlock/>
+                                            <center style="color:#ffffff;font-family:Arial;font-size:14px;font-weight: bold;">Ingresa a nuestro portal</center>
+                                            </v:roundrect>
+                                        <![endif]-->
+                                        <a target="_blank" href="https://grupotress.atlassian.net/servicedesk/customer/portal/31" style="background-color:#79B228;border:1px solid #79B228;border-radius:3px;color:#ffffff;display:inline-block;font-family:'Arial';line-height:30px;text-align:center;text-decoration:none;-webkit-text-size-adjust:none;mso-hide:all; font-weight: bold;" class="btnResponsivo">Ingresa a nuestro portal</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- Button : END -->
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="color: #757575; text-align: justify; font-family: 'Arial'; line-height: 18px; font-weight: normal;" class="Texto">
+                        <p style="margin: 0px 0px 0px 0px;">
+                            Clic <a style="color: #5C5CA2; letter-spacing: -1px; font-weight: bold; " href="https://jappi.tress.com.mx/Comunicados/_layouts/15/WopiFrame.aspx?sourcedoc={627B5A31-0E21-4601-BFF8-F9E9E2D0FCDD}&file=Manual%20de%20uso%20-Portal%20Servicios%20de%20tecnolog%C3%ADa.pdf&action=default" >aquí</a> para visualizar el manual con los pasos de registro y funcionamiento del portal.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="color: #757575; text-align: justify; font-family: 'Arial'; line-height: 18px; font-weight: bold;" class="Texto">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#E5E5E5" align="center" valign="top" border="0" style="" class="textoContacto">
+                        <b style="color:#4C4C4C; font-family: 'Arial'; font-weight: normal;">Dudas o comentarios, envíanos tus preguntas a:</b>
+                </tr>
+                <tr>
+                    <td  bgcolor="#E5E5E5" align="center" valign="top" border="0" style="">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="90%">
+                            <tr>
+                                <!-- Column : BEGIN -->
+                                <td align="center" class="stack-column-center" style="padding: 0px 0px 0px 0px;" width="195">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                        <tr>
+                                            <td style="color: #C44812; font-size: 14px; " align="center" >
+                                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                    <tr>
+                                                        <td style="color: #C44812; padding: 0px 10px 0px 0px;" width="20" align="right">
+                                                            <a href="tel:+52010000000000" style="color: #5C5CA2; font-weight: bold;">
+                                                                <img height="25" src="https://clientes.tress.com.mx/Publico/Compartido/RecursosPlantillas/telefonoGTI2.png" alt="" style="">
+                                                            </a>
+                                                        </td>
+                                                        <td style="color: #C44812;" width="180" align="left" class="textoResponsivo">
+                                                            <p>
+                                                                <a href="tel:+52016649734166" style="color: #C44812; font-weight: bold; ">
+                                                                    (664) 973 4129
+                                                                </a>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <!-- Column : END -->
+                                <!-- Column : BEGIN -->
+                                <td align="center" class="stack-column-center" style="" width="170">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                        <tr>
+                                            <td style="color: #C44812; font-size: 14px; " align="center" >
+                                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                    <tr>
+                                                        <td style="color: #C44812; padding: 0px 10px 0px 0px;" width="20" align="right">
+                                                            <a style="color: #C44812; letter-spacing: -1px; text-decoration: none; text-align: middle; font-weight: bold;" href="mailto:it@tress.com.mx">
+                                                                <img height="25" src="https://clientes.tress.com.mx/Publico/Compartido/RecursosPlantillas/mailGTI2.png" alt="" style="">
+                                                            </a>
+                                                        </td>
+                                                        <td style="color: #C44812;" width="135" align="left" class="textoResponsivo2">
+                                                            <p>
+                                                                <a style="color: #C44812; letter-spacing: -1px; font-weight: bold; " href="mailto:it@tress.com.mx">it@tress.com.mx</a>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <!-- Column : END -->
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#E5E5E5" align="center" valign="top" border="0" style="font-family: 'Arial'; color:#4C4C4C;" class="textoContacto2">
+                        Gracias por confiar en nosotros. <b style="color:#4C4C4C; font-family: 'Arial';" >Tu equipo Grupo Tress Internacional.</b><br/>
+                </tr>
+                <tr>
+                    <td bgcolor="#F4F4F4" align="center" valign="top" border="0" style="padding: 25px 40px 0px 40px;">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="50%">
+                            <tr>
+                                <!-- Column : BEGIN -->
+                                <td align="center">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                        <tr>
+                                            <td style="color: #999999; font-size: 14px; " width="20" align="center">
+                                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                    <tr>
+                                                        <td style="color: #999999; font-size: 14px;" width="60" align="center">
+                                                            <a href="https://www.facebook.com/GrupoTressInternacional" target="_blank" style="border: none; color: white;">
+                                                            <img src="https://clientes.tress.com.mx/Publico/Compartido/Paginas/Templates/facebook.png" width="18" height="18" alt="Facebook" border="0" style="height: auto; font-family: 'Arial'; font-size: 10px; line-height: 140%; color: #999999;" >
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <!-- Column : END -->
+                                <!-- Column : BEGIN -->
+                                <td align="center">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                        <tr>
+                                            <td style="color: #999999; font-size: 14px; " width="20" align="center">
+                                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                    <tr>
+                                                        <td style="color: #999999; font-size: 14px;" width="60" align="center">
+                                                            <a href="https://twitter.com/grupotress" target="_blank" style="border: none; color: white;">
+                                                            <img src="https://clientes.tress.com.mx/Publico/Compartido/Paginas/Templates/twitter.png" width="18" height="18" alt="Twitter" border="0" style="height: auto; font-family: 'Arial'; font-size: 10px; line-height: 140%; color: #999999;" >
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <!-- Column : END -->
+                                <!-- Column : BEGIN -->
+                                <td align="center">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                        <tr>
+                                            <td style="color: #999999; font-size: 14px; " width="20" align="center">
+                                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                    <tr>
+                                                        <td style="color: #999999; font-size: 14px;" width="60" align="center">
+                                                            <a href="https://www.youtube.com/user/grupotress" target="_blank" style="border: none; color: white;">
+                                                            <img src="https://clientes.tress.com.mx/Publico/Compartido/Paginas/Templates/youtube.png" width="18" height="18" alt="Youtube" border="0" style="height: auto; font-family: 'Arial'; font-size: 10px; line-height: 140%; color: #999999;" >
+                                                            </a>    
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <!-- Column : END -->
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#F4F4F4" align="center" valign="top" style="padding: 25px 0px 25px 0px">
+                        <a href="http://www.tress.com.mx/INICIO/tabid/55/ctl/Privacy/language/es-ES/Default.aspx" target="_blank" style="text-align: center; color: #999999; font-size: 12px; font-family: 'Arial'; font-weight: bold;">Políticas GTI</a>
+                    </td>
+                </tr>
+            </table>
+                
+        <!--[if mso | IE]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+        </center>
+    </body>
+</html>
